@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #FF9933 33.33%, white 33.33%, white 66.66%, #009900 66.66%);
+    background-size: 200% 200%;
+    animation: gradient 5s linear infinite;
+    color:black;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  #countdown {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  #startButton {
+    background-color: #143522;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  #startButton:hover {
+    background-color: #2ecc71;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+</style>
+</head>
+<body>
+<div id="countdown"></div>
+<button id="startButton" onclick="startCountdown()">Start Countdown</button>
+<script>
+function countdown(num, callback) {
+  if (num > 0) {
+    document.getElementById('countdown').textContent = num;
+    setTimeout(function() {
+      countdown(num - 1, callback);
+    }, 1000);
+  } else {
+    document.getElementById('countdown').textContent = "* Happy Independence Day *";
+    document.getElementById('startButton').style.display = 'none';
+    callback();
+  }
+}
+
+function startCountdown() {
+  document.getElementById('startButton').disabled = true;
+  countdown(10, function() {
+    console.log("Countdown complete!");
+  });
+}
+</script>
+</body>
+</html>
